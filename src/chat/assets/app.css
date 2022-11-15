@@ -1,0 +1,73 @@
+body{
+    margin: 0px !important;
+}
+
+.makeStyles-storiesDiv-8::-webkit-scrollbar{
+    display: none;
+}
+
+.MuiAvatar-img{
+    border-radius: 50% !important;
+}
+
+.MuiBottomNavigation-root{
+    height: 62px !important;
+}
+
+.userMessage a{
+    text-decoration: none !important;
+}
+
+.userMessage{
+    margin-top: 63px;
+    margin-bottom: 140px;
+}
+
+.inputField .MuiInput-underline:hover:not(.Mui-disabled):before{
+    border: 0
+}
+
+.inputField .MuiInput-underline:before{
+    border: 0
+}
+
+.inputField .MuiInput-underline:after{
+    border: 0
+}
+
+.inputField .MuiInput-root{
+    background-color: #ebebeb;
+    padding: 7px;
+    border-radius: 15px
+}
+
+.search {
+    width: 100%
+}
+
+.search .MuiInput-underline:hover:not(.Mui-disabled):before{
+    border-bottom: 1px solid grey
+}
+
+.search .MuiInput-underline:before{
+    border-bottom: 1px solid grey
+}
+
+.search .MuiInput-underline:after{
+    border-bottom: 1px solid grey
+}
+
+
+.makeStyles-root-46 .MuiTypography-body1{
+    font-size: 10px !important
+}
+
+/* .MuiBottomNavigation-root .MuiSvgIcon-root {
+    font-size: 1.3rem !important;
+    padding: 10px;
+    padding-bottom: 0px
+}
+
+.MuiBottomNavigation-root .MuiBottomNavigationAction-label {
+    font-size: 12px !important;
+} */
