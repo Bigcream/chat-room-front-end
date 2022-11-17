@@ -3,7 +3,7 @@ import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 
 var stompClient =null;
-const ChatRoom = () => {
+const WebSocket = () => {
     const [privateChats, setPrivateChats] = useState(new Map());     
     const [publicChats, setPublicChats] = useState([]);
     const [roomId, setRoomId] = useState(0); 
@@ -191,4 +191,4 @@ const ChatRoom = () => {
     )
 }
 
-export default ChatRoom
+export default WebSocket

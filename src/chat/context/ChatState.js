@@ -1,9 +1,9 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 
 import ChatContext from "./ChatContext"
 import ChatReducer from "./ChatReducer"
 
-
+import axios from "axios"
 //import user images
 import Img1 from "../assets/avatar.png"
 import Img2 from "../assets/avatar1.jpeg"
@@ -20,6 +20,15 @@ import {
 } from './types'
 
 const ChatState = props => {
+    const token = localStorage.getItem("token");
+    axios.defaults.headers.get['Authorization'] = `Bearer ${token}`;
+    useEffect(() => {
+      axios.get(`http://localhost:8080/api/v1/get-all-user`)
+      .then(res => {
+        console.log(res.data);
+      })
+      console.log('useEffect has been called!');
+    }, []);
     const initialState = {
         messages: [
             {

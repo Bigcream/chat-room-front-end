@@ -11,7 +11,8 @@ import ChatState from './chat/context/ChatState'
 import NewChat from "./chat/NewChat"
 import Bookmark from "./chat/Bookmark"
 import Profile from "./chat/Profile"
-
+import tailwindConfig from "./tailwind.config"
+import Login from "./chat/login"
 function App() {
 
   return <div className="App">
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </ChatState>

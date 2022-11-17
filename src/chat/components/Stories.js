@@ -28,7 +28,8 @@ const customStyles = makeStyles(() => ({
     marginRight: "12px",
     width: '47px',
     height: '47px',
-    border: '2px solid #8181e2'
+    border: '2px solid #8181e2',
+    cursor: 'pointer'
   },
 }));
 var stompClient =null;
@@ -54,18 +55,15 @@ function Stories() {
       connected: false,
       message: ''
     });
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
 
   const connect =()=>{
-      let Sock = new SockJS('http://localhost:8080/ws');
+      const Sock = new SockJS('http://localhost:8080/ws');
       stompClient = over(Sock);
       stompClient.connect({},onConnected, onError);
   }
 
   const onConnected = () => {
-      userCreateRoom();
+    userCreateRoom();
       setUserData({...userData,"connected": true});
       stompClient.subscribe('/chatroom/public', onMessageReceived);
       stompClient.subscribe('/user/'+userData.username+'/private', onPrivateMessage);
@@ -174,19 +172,42 @@ function Stories() {
       <div className={styles.root}>
         <h1 className={styles.storiesHeader}> Short Stories</h1>
         <div className={styles.storiesDiv}>
-          {stories.map((story, k) => (
-            <Avatar variant="circular" src={story} className={styles.storyAvatar} key={k} align="center">
-        
-            </Avatar>
+          {rooms.map((story, k) => (
+            // <button style={{
+            //   display: 'inline-block',
+            //   width: 'max-content',
+            //   height: 'max-content',
+            //   background: 'transparent',
+            //   border: 'none',
+            //   cursor: "pointer"
+            // }} onClick={()=>{
+
+            // }}>
+            // {/* </button> */}
+            <Avatar variant="circular" src={story} className={styles.storyAvatar} key={k} align="center" onClick={()=>{
+              registerUser();
+              console.log(story.chatRoomId);
+            }}
+              />
           ))}
           {rooms.map(room =>
               <tr key={room.chatRoomId}>
                   <td>{room.chatRoomId}</td>
               </tr>
           )}
-                <button type="button" onClick={registerUser}>
-                    connect
-              </button> 
+          <div>
+            <input
+                id="user-name"
+                placeholder="Enter your name"
+                name="userName"
+                value={userData.username}
+                onChange={handleUsername}
+                margin="normal"
+              />
+            <button onClick={registerUser} >
+              Button
+            </button> 
+        </div> 
         </div>
       </div>
     </Paper>
