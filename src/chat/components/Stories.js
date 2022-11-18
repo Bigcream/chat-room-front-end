@@ -56,10 +56,10 @@ function Stories() {
       message: ''
     });
 
-  const connect =()=>{
+  const connect =(username)=>{
       const Sock = new SockJS('http://localhost:8080/ws');
       stompClient = over(Sock);
-      stompClient.connect({},onConnected, onError);
+      stompClient.connect({ username: username, },onConnected, onError);
   }
 
   const onConnected = () => {
@@ -164,7 +164,7 @@ function Stories() {
   }
 
   const registerUser=()=>{
-      connect();
+      connect(userData.username);
   }
 
   return (
