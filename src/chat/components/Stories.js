@@ -70,6 +70,27 @@ function Stories() {
       userJoin();
   }
 
+  const disconnect =(username)=>{
+    const Sock = new SockJS('http://localhost:8080/ws');
+    stompClient = over(Sock);
+    stompClient.disconnect(onDisConnected, { username: username, })
+}
+
+  const onDisConnected = () => {
+      setUserData({...userData,"connected": true});
+      stompClient.subscribe('/chatroom/public', onMessageReceived);
+      stompClient.subscribe('/user/'+userData.username+'/private', onPrivateMessage);
+      userDisconnect();
+  }
+
+  const userDisconnect=()=>{
+    var chatMessage = {
+      senderName: "disconnected",
+      status:"JOIN"
+    };
+    stompClient.send("/app/join-room", {}, JSON.stringify(chatMessage));
+}
+
   const userJoin=()=>{
         var chatMessage = {
           senderName: userData.username,
@@ -167,6 +188,10 @@ function Stories() {
       connect(userData.username);
   }
 
+  const disconnectUser=()=>{
+    disconnect(userData.username);
+}
+
   return (
     <Paper>
       <div className={styles.root}>
@@ -206,6 +231,9 @@ function Stories() {
               />
             <button onClick={registerUser} >
               Button
+            </button> 
+            <button onClick={disconnectUser} >
+              disconnect
             </button> 
         </div> 
         </div>
