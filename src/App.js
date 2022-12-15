@@ -1,50 +1,39 @@
-// import all chat pages
-import "./chat/assets/app.css"
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+import DefaultLayout from '~/layouts';
 
-import Index from "./chat/index"
-import Messenger from "./chat/Messenger"
-import Chat from "./chat/Chat"
-
-import { Switch, Route } from "react-router-dom"
-
-import ChatState from './chat/context/ChatState'
-import NewChat from "./chat/NewChat"
-import Bookmark from "./chat/Bookmark"
-import Profile from "./chat/Profile"
-import tailwindConfig from "./tailwind.config"
-import Login from "./chat/login"
 function App() {
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        const Page = route.component;
+                        let Layout = DefaultLayout;
 
-  return <div className="App">
-    <ChatState>
-      <Switch>
-        {/* set all chat design routes */}
-        <Route exact path="/">
-          <Index />
-        </Route>
-        <Route path="/chats">
-          <Messenger />
-        </Route>
-        <Route path="/chat">
-          <Chat />
-        </Route>
-        <Route path="/new-chat">
-          <NewChat />
-        </Route>
-        <Route path="/bookmark">
-          <Bookmark />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-      </Switch>
-    </ChatState>
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
 
-
-  </div>;
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
