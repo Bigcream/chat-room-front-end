@@ -13,7 +13,6 @@ import {
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-
 import config from '~/config';
 import Button from '~/components/Button';
 import styles from './Header.module.scss';
@@ -22,7 +21,12 @@ import Menu from '~/components/Popper/Menu';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
-
+import { Modal } from 'react-bootstrap';
+import { useState, useCallback } from 'react';
+import Login from '~/components/Login';
+import {
+    CloseIcon
+} from '~/components/Icons';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -57,8 +61,7 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
-
+    const currentUser = false;
     // Handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -126,7 +129,8 @@ function Header() {
                     ) : (
                         <>
                             <Button text>Upload</Button>
-                            <Button primary>Log in</Button>
+                            <Login icon={<CloseIcon />}></Login>
+                            
                         </>
                     )}
 
@@ -146,6 +150,7 @@ function Header() {
                 </div>
             </div>
         </header>
+        
     );
 }
 

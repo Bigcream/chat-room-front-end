@@ -1,0 +1,59 @@
+.modal-container {
+    position: fixed;
+    top: 25%;
+    left: 40%;
+    border: solid 1px black !important;
+    border-radius: 4px;
+    background: #fff;
+    width: 400px;
+    height: 400px;
+}
+.icon-modal {
+  position: absolute;
+    right: -11px;
+    top: -15px;
+    background: white;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+.btn-submit {
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+  padding-right: 110px;
+  padding-bottom: 30px;
+}
+.btn-login {
+  border: solid 1px black;
+  height: 30px;
+  width: 30px;
+}
+
+.btn-register {
+  border: solid 1px black;
+  margin-left: 40px !important;
+  height: 30px;
+  width: 30px;
+}
+
+.input_form {
+  font-size: 15px !important;
+  height: 40px;
+}
+
+.div_input_form {
+  font-size: 15px;
+  color: #222;
+  padding: 15px;
+}
+
+.modal-header {
+  padding-left: 140px;
+}
+
+.modal-title {
+  padding-left: 180px;
+  padding-top: 10px;
+}
+
